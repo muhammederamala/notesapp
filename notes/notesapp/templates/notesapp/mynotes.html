@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>MY NOTES</h1>
+<br><br><br>
+
+{% if my_notes %}
+{% for note in my_notes %}
+
+<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+
+<h2>{{ note.text }}</h2>
+<video src="{{ note.video.url }}" width="250" height="200" controls></video>
+<audio src="{{ note.audio.url }}" width="150" controls></audio>
+<br><br>
+<a href="{% url 'delete_note' note.id %}" method="post">
+    <button>Delete</button>
+  </a>
+<br><br>
+
+{% endfor %}
+
+{% else %}
+<h2>You have no notes !!</h2>
+<a href="{% url 'welcome_view' %}" method="post">
+    <button>Create a new note</button>
+  </a>
+{% endif %}
+
+<br><br>
+<br><br>
+<br><br>
+
+<a href="{% url 'view_all_notes' %}" method="post">
+    <button>View all notes</button>
+  </a>
+
+{% endblock content %}

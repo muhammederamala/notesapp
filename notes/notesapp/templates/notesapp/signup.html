@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="post" action="{% url 'sign_up' %}">
+            {% csrf_token %}
+
+            <h2 class="login_max2"> Sign up </h2>
+            <div class="login_formfields">
+            <input type ="text" class="login_max" id="fname" placeholder="Username" name="username">
+            <br>
+            <input type="email" class="login_max" id="email" placeholder="Email" name="email">
+            <br>
+            <input type="password" class="login_max" id="password" placeholder="Password" name="password1">
+            <br>
+            <input type="password" class="login_max" id="password" placeholder="Confirm password" name="password2">
+            <br>
+            </div>
+            {% if user_exists %}
+            <p style="color: red;">Account already exists! Click here.</p>
+            {% endif %}           
+            <a href="{% url 'home_screen_view' %}" class="login_links">already have an account?</a>
+            <br>
+            <input type="submit" name="submit" class="login_button" placeholder="SUBMIT">
+        </form>
+
+{% endblock content %}

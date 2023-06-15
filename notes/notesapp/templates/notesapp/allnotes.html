@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>ALL NOTES</h1>
+<br><br><br>
+{% for note in all_notes %}
+
+<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+<p>{{ note.user }}</p>
+<br>
+<h2>{{ note.text }}</h2>
+<video src="{{ note.video.url }}" width="250" height="200" controls></video>
+<audio src="{{ note.audio.url }}" width="150" controls></audio>
+<br><br>
+<a href="{% url 'delete_notes' note.id %}" method="post">
+    <button>Delete</button>
+  </a>
+<br><br>
+</div>
+{% endfor %}
+
+<br><br>
+<br><br>
+<br><br>
+
+<a href="{% url 'view_my_notes' %}" method="post">
+    <button>Back to my notes</button>
+  </a>
+
+{% endblock content %}
